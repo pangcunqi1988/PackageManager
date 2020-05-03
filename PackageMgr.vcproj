@@ -175,7 +175,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\MemStack.cpp"
+				RelativePath=".\MemCheckMgr.cpp"
 				>
 			</File>
 			<File
@@ -189,11 +189,15 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath=".\MemStack.h"
+				RelativePath=".\MemCheckMgr.h"
 				>
 			</File>
 			<File
 				RelativePath=".\PackageMgr.h"
+				>
+			</File>
+			<File
+				RelativePath=".\PoolManager.h"
 				>
 			</File>
 		</Filter>

@@ -1,5 +1,5 @@
 /*!
- * \file MemStack.h
+ * \file MemCheckMgr.h
  * \date 2020/05/03 20:13
  * \author pangcunqi
 */
@@ -8,7 +8,7 @@
 //---------------------------------------------------------------
 // 内存记录栈 
 //---------------------------------------------------------------
-class MemStack 
+class MemCheckMgr 
 {
 private:
 	struct MemInfo 
@@ -20,13 +20,13 @@ private:
 	};
 	MemInfo* head;
 public:
-	MemStack();
-	~MemStack();
+	MemCheckMgr();
+	~MemCheckMgr();
 	void Insert(void* ptr, const char* file, unsigned int line);
 	void Delete(void* ptr);
 	void LogMemLeak();
 };
-extern MemStack g_objMemStack;
+extern MemCheckMgr g_objMemCheckMgr;
 //---------------------------------------------------------------
 // 重载new,new[],delete,delete[] 
 //---------------------------------------------------------------
@@ -38,7 +38,7 @@ void operator delete[](void* ptr);
 //---------------------------------------------------------------
 // 使用宏将带测试代码中的new和delte替换为重载的new和delete 
 //---------------------------------------------------------------
-#ifndef MEM_STACK_CPP
+#ifndef MEM_CHECK_MGR_CPP
 #define new new(__FILE__,__LINE__)
 #endif
 //---------------------------------------------------------------

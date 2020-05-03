@@ -1,15 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MEM_STACK_CPP
-#include "MemStack.h"
+#define MEM_CHECK_MGR_CPP
+#include "MemCheckMgr.h"
 
-MemStack::MemStack() :head(NULL)
+MemCheckMgr::MemCheckMgr() :head(NULL)
 {
 
 }
 
-MemStack::~MemStack()
+MemCheckMgr::~MemCheckMgr()
 {
 	MemInfo* tmp;
 	while(head) 
@@ -21,14 +21,14 @@ MemStack::~MemStack()
 	}
 }
 
-void MemStack::Insert(void* ptr, const char* file, unsigned int line)
+void MemCheckMgr::Insert(void* ptr, const char* file, unsigned int line)
 {
 	MemInfo* node = (MemInfo*)malloc(sizeof(MemInfo));
 	node->ptr = ptr; node->file = file; node->line=line;
 	node->link = head; head = node;
 }
 
-void MemStack::Delete(void* ptr)
+void MemCheckMgr::Delete(void* ptr)
 {
 	MemInfo* node = head;
 	MemInfo* preNode = NULL;
@@ -48,7 +48,7 @@ void MemStack::Delete(void* ptr)
 	}
 }
 
-void MemStack::LogMemLeak()
+void MemCheckMgr::LogMemLeak()
 {
 	FILE* fp = fopen("MemLeakInfo.txt", "w");
 	if (fp)
@@ -71,11 +71,11 @@ void MemStack::LogMemLeak()
 	}
 }
 
-MemStack g_objMemStack;
+MemCheckMgr g_objMemCheckMgr;
 void* operator new(size_t size, const char* file, unsigned int line)
 {
 	void* ptr = malloc(size);
-	g_objMemStack.Insert(ptr, file, line);
+	g_objMemCheckMgr.Insert(ptr, file, line);
 	return ptr;
 }
 
@@ -87,7 +87,7 @@ void* operator new[](size_t size, const char* file, unsigned int line)
 void operator delete(void* ptr)
 {
 	free(ptr);
-	g_objMemStack.Delete(ptr);
+	g_objMemCheckMgr.Delete(ptr);
 }
 
 void operator delete[](void* ptr)

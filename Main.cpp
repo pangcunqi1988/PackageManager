@@ -1,7 +1,17 @@
 #include <stdio.h>
 #include <windows.h>
 #include "PackageMgr.h"
-#include "MemStack.h"
+#include "MemCheckMgr.h"
+#include "PoolManager.h"
+
+class Student : public CMemObject<Student>
+{
+public:
+	Student(){}
+private:
+	int nNum;
+	int nAge;
+};
 
 int main()
 {
@@ -26,7 +36,10 @@ int main()
 	printf("[%d]InitPackage Over...\n", GetTickCount()-dwBeginTime);
 	g_objPackageMgr.DestoryPackage();
 
-	g_objMemStack.LogMemLeak();
+	Student* pStudent = Student::CreateObject();
+	pStudent->ReleaseObject();
+
+	g_objMemCheckMgr.LogMemLeak();
 	getchar();
 	return 0;
 }
