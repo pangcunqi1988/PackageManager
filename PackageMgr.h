@@ -15,6 +15,8 @@ class PackageMgr
 public:
 	static	PackageMgr& GetInstance();
 	bool		InitPackage(const char* pszDirectory);
+	void		DestoryPackage();
+
 	FILE*	Myfopen(const char* pszFileName, const char* pszOperator);
 	char*	Myfgets(char* pszBuffer, int nSize, FILE * fp);
 

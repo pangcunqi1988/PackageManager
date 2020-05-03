@@ -1,4 +1,5 @@
 #include "PackageMgr.h"
+#include "MemStack.h"
 
 #include <stdio.h>
 #include <io.h>
@@ -27,6 +28,15 @@ bool PackageMgr::InitPackage(const char* pszDirectory)
 	GeneratorPackage();
 	SavePackage();
 	return true;
+}
+
+void PackageMgr::DestoryPackage()
+{
+	if (m_pBuffer)
+	{
+		delete[] m_pBuffer;
+	}
+	m_vecFileInfo.clear();
 }
 
 void PackageMgr::SearchIniFile()
@@ -172,3 +182,4 @@ char* PackageMgr::Myfgets(char* pszBuffer, int nSize, FILE * fp)
 
 	return pszBuffer;
 }
+
