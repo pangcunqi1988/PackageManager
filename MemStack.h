@@ -1,18 +1,23 @@
+/*!
+ * \file MemStack.h
+ * \date 2020/05/03 20:13
+ * \author pangcunqi
+*/
 #pragma once
 
-struct MemInfo 
-{
-	void*			ptr;
-	const char*	file;
-	unsigned int line;
-	MemInfo*	link;
-};
 //---------------------------------------------------------------
 // ÄÚ´æ¼ÇÂ¼Õ» 
 //---------------------------------------------------------------
 class MemStack 
 {
 private:
+	struct MemInfo 
+	{
+		void*			ptr;
+		const char*	file;
+		unsigned int line;
+		MemInfo*	link;
+	};
 	MemInfo* head;
 public:
 	MemStack();
