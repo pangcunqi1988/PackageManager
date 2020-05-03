@@ -14,7 +14,7 @@ class PackageMgr
 {
 public:
 	static	PackageMgr& GetInstance();
-	bool	InitPackage(const char* pszDirectory);
+	bool		InitPackage(const char* pszDirectory);
 	FILE*	Myfopen(const char* pszFileName, const char* pszOperator);
 	char*	Myfgets(char* pszBuffer, int nSize, FILE * fp);
 
@@ -32,7 +32,7 @@ private:
 	};
 	vector<FileInfo> m_vecFileInfo;
 	char*					m_pBuffer;
-	int					m_pWritePos;
+	int						m_pWritePos;
 	string					m_strDirectory;
 };
 
