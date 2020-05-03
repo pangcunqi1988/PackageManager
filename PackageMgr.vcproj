@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="FileOperator"
+	Name="PackageMgr"
 	ProjectGUID="{06CE4378-8A5E-40E3-95A7-DB2C67A1DF62}"
 	RootNamespace="FileOperator"
 	Keyword="Win32Proj"
